@@ -1,0 +1,5 @@
+{
+  "name": "TradeSync Platform",
+  "description": "A high-fidelity banking platform for managing cross-border invoice discounting, treasury FX swaps, and ISO 20022 settlement netting.",
+  "requestFramePermissions": []
+}
