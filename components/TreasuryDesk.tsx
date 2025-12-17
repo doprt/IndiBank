@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Landmark, ArrowLeftRight, Activity, Zap, RefreshCw, CheckCircle2, Globe, Building, Scale, AlertTriangle, FileText, BarChart3, TrendingUp, Calendar, ArrowUpRight, ArrowDownRight, Layers, BookOpen, GitMerge, Shield } from 'lucide-react';
+import { Landmark, ArrowLeftRight, Activity, Zap, RefreshCw, CheckCircle2, Globe, Building, Scale, AlertTriangle, FileText, BarChart3, TrendingUp, Calendar, ArrowUpRight, ArrowDownRight, Layers, BookOpen, GitMerge, Shield, Minus } from 'lucide-react';
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ComposedChart, Legend } from 'recharts';
-import { MOCK_RATES, BASIS_HISTORY, SWAP_CONFIG, MOCK_LIQUIDITY_PROVIDERS, MOCK_RISK_METRICS, MOCK_REGULATORY_LOGS, MOCK_SWAP_HISTORY, MOCK_MATURITY_PROFILE } from '../constants';
+import { MOCK_RATES, BASIS_HISTORY, SWAP_CONFIG, MOCK_LIQUIDITY_PROVIDERS, MOCK_RISK_METRICS, MOCK_REGULATORY_LOGS, MOCK_SWAP_HISTORY, MOCK_MATURITY_PROFILE, SENSITIVITY_ANALYSIS_DATA } from '../constants';
 import { DeskHeader } from './DeskHeader';
 import { getTreasuryAnalysis } from '../services/geminiService';
 import { GeminiAnalysis } from '../types';
@@ -151,8 +151,8 @@ export const TreasuryDesk: React.FC = () => {
                             <span className="text-slate-500">Master Agreement ID</span>
                             <span className="font-mono text-slate-800">
                                 {targetCounterparty === 'Best Execution (Aggregated)' 
-                                    ? 'MA-AXIS-MULT-2024' 
-                                    : `MA-AXIS-${targetCounterparty.split(' ')[0].toUpperCase()}-2021`}
+                                    ? 'MA-AXIS-MULT-2026' 
+                                    : `MA-AXIS-${targetCounterparty.split(' ')[0].toUpperCase()}-2024`}
                             </span>
                         </div>
                         <div className="flex justify-between">
@@ -333,7 +333,7 @@ export const TreasuryDesk: React.FC = () => {
                           <Activity size={14} className="mr-2" />
                           Greek Sensitivity
                        </h4>
-                       <div className="grid grid-cols-2 gap-4 text-sm">
+                       <div className="grid grid-cols-3 gap-4 text-sm">
                           <div className="p-2 bg-slate-800 rounded">
                              <div className="text-[10px] text-slate-400">Delta (Spot)</div>
                              <div className="font-mono font-bold text-blue-400">{MOCK_RISK_METRICS.delta}</div>
@@ -349,6 +349,14 @@ export const TreasuryDesk: React.FC = () => {
                           <div className="p-2 bg-slate-800 rounded">
                              <div className="text-[10px] text-slate-400">Vega (Vol)</div>
                              <div className="font-mono font-bold text-amber-400">{MOCK_RISK_METRICS.vega}</div>
+                          </div>
+                           <div className="p-2 bg-slate-800 rounded">
+                             <div className="text-[10px] text-slate-400">Rho (Rate)</div>
+                             <div className="font-mono font-bold text-cyan-400">{MOCK_RISK_METRICS.rho}</div>
+                          </div>
+                           <div className="p-2 bg-slate-800 rounded">
+                             <div className="text-[10px] text-slate-400">Volga (Vol-Vol)</div>
+                             <div className="font-mono font-bold text-pink-400">{MOCK_RISK_METRICS.volga}</div>
                           </div>
                        </div>
                     </div>
@@ -371,7 +379,25 @@ export const TreasuryDesk: React.FC = () => {
 
                  {/* Right Column: Charts & Analysis */}
                  <div className="lg:col-span-2 space-y-6">
-                    <div className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm h-80">
+                    <div className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm h-64">
+                       <div className="flex justify-between items-center mb-4">
+                          <h4 className="text-sm font-bold text-slate-700">Sensitivity Analysis: Delta & Gamma Profile</h4>
+                       </div>
+                       <ResponsiveContainer width="100%" height="100%">
+                          <ComposedChart data={SENSITIVITY_ANALYSIS_DATA}>
+                             <CartesianGrid strokeDasharray="3 3" vertical={false} />
+                             <XAxis dataKey="spot" tick={{fontSize: 10}} label={{ value: 'Spot Price', position: 'insideBottom', offset: -5 }} />
+                             <YAxis yAxisId="left" orientation="left" tick={{fontSize: 10}} label={{ value: 'Delta', angle: -90, position: 'insideLeft' }} />
+                             <YAxis yAxisId="right" orientation="right" tick={{fontSize: 10}} label={{ value: 'Gamma', angle: 90, position: 'insideRight' }} />
+                             <Tooltip />
+                             <Legend />
+                             <Line yAxisId="left" type="monotone" dataKey="delta" stroke="#3b82f6" strokeWidth={2} dot={false} />
+                             <Line yAxisId="right" type="monotone" dataKey="gamma" stroke="#a855f7" strokeWidth={2} dot={false} />
+                          </ComposedChart>
+                       </ResponsiveContainer>
+                    </div>
+
+                    <div className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm h-64">
                        <div className="flex justify-between items-center mb-4">
                           <h4 className="text-sm font-bold text-slate-700">Swap P&L vs Basis Spread Correlation</h4>
                        </div>
@@ -569,35 +595,47 @@ export const TreasuryDesk: React.FC = () => {
   );
 };
 
-const TabButton: React.FC<{ label: string; active: boolean; onClick: () => void; icon: React.ReactNode }> = ({ label, active, onClick, icon }) => (
-  <button 
-    onClick={onClick}
-    className={`flex-1 py-4 flex items-center justify-center space-x-2 text-sm font-medium transition-colors ${
-       active ? 'bg-white text-blue-600 border-b-2 border-blue-600' : 'bg-slate-50 text-slate-500 hover:bg-slate-100 hover:text-slate-700 border-b border-slate-200'
-    }`}
-  >
-     {icon}
-     <span>{label}</span>
-  </button>
-);
-
-const TickerCard: React.FC<{ label: string; value: string; trend: string; neutral: boolean; highlight?: boolean }> = ({ label, value, trend, neutral, highlight }) => (
-  <div className={`p-4 rounded-xl border shadow-sm ${highlight ? 'bg-blue-50 border-blue-200' : 'bg-white border-slate-200'}`}>
-    <div className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1">{label}</div>
-    <div className="flex items-baseline space-x-2">
-      <span className={`text-2xl font-bold ${highlight ? 'text-blue-700' : 'text-slate-800'}`}>{value}</span>
-    </div>
-    <div className={`text-xs font-medium mt-1 ${neutral ? 'text-slate-400' : trend.startsWith('+') ? 'text-green-600' : 'text-red-600'}`}>
-      {trend} since open
+const TickerCard: React.FC<{
+  label: string;
+  value: string;
+  trend: string;
+  neutral: boolean;
+  highlight?: boolean;
+}> = ({ label, value, trend, neutral, highlight }) => (
+  <div className={`p-4 rounded-xl border shadow-sm ${highlight ? 'bg-blue-600 text-white border-blue-600' : 'bg-white border-slate-200'}`}>
+    <div className={`text-xs uppercase font-bold mb-1 ${highlight ? 'text-blue-200' : 'text-slate-500'}`}>{label}</div>
+    <div className={`text-2xl font-bold ${highlight ? 'text-white' : 'text-slate-900'}`}>{value}</div>
+    <div className={`text-xs font-medium flex items-center mt-2 ${
+      highlight ? 'text-blue-100' : 
+      neutral ? 'text-slate-400' : 
+      trend.includes('+') ? 'text-emerald-600' : 'text-red-600'
+    }`}>
+      {neutral ? <Minus size={14} className="mr-1" /> : trend.includes('+') ? <ArrowUpRight size={14} className="mr-1" /> : <ArrowDownRight size={14} className="mr-1" />}
+      {trend}
     </div>
   </div>
 );
 
+const TabButton: React.FC<{
+  label: string;
+  active: boolean;
+  onClick: () => void;
+  icon: React.ReactNode;
+}> = ({ label, active, onClick, icon }) => (
+  <button 
+    onClick={onClick}
+    className={`flex-1 py-4 text-sm font-bold border-b-2 transition-colors flex items-center justify-center ${
+      active ? 'border-blue-600 text-blue-600 bg-blue-50/50' : 'border-transparent text-slate-500 hover:text-slate-700 hover:bg-slate-50'
+    }`}
+  >
+    <span className="mr-2">{icon}</span>
+    {label}
+  </button>
+);
+
 const Row: React.FC<{ label: string; value: string; highlight?: boolean }> = ({ label, value, highlight }) => (
-  <div className="flex justify-between items-center group">
-     <span className="text-sm text-slate-500">{label}</span>
-     <span className={`font-mono font-bold ${highlight ? 'text-blue-600 bg-blue-50 px-2 py-0.5 rounded' : 'text-slate-800'}`}>
-        {value}
-     </span>
+  <div className={`flex justify-between items-center ${highlight ? 'bg-blue-50 p-2 rounded -mx-2' : ''}`}>
+    <span className={`text-xs ${highlight ? 'text-blue-700 font-bold' : 'text-slate-500'}`}>{label}</span>
+    <span className={`text-sm font-mono ${highlight ? 'text-blue-700 font-bold' : 'text-slate-800'}`}>{value}</span>
   </div>
 );

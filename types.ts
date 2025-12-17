@@ -169,6 +169,7 @@ export interface SwapRiskMetrics {
   theta: number; // Time decay
   vega: number; // Sensitivity to volatility
   rho: number; // Sensitivity to interest rate
+  volga: number; // Sensitivity of Vega to volatility
   var99: number; // Value at Risk (99% confidence)
   stressTestResult: 'Pass' | 'Warning' | 'Fail';
 }

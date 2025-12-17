@@ -2,12 +2,12 @@ import { Invoice, SwapRate, Commodity, LiquidityProvider, SwapRiskMetrics, Regul
 
 export const MOCK_INVOICES: Invoice[] = [
   {
-    id: 'INV-2024-001',
+    id: 'INV-2026-001',
     exporter: 'Tata Textiles Ltd',
     importer: 'British Retail Group',
     amountGBP: 450000,
     amountINR: 47250000,
-    dueDate: '2024-06-15',
+    dueDate: '2026-06-15',
     status: 'Underwriting',
     integrity: { gstnVerified: true, logisticsVerified: true, dpcVerified: true },
     industry: 'Textiles',
@@ -45,7 +45,7 @@ export const MOCK_INVOICES: Invoice[] = [
       bankName: "HSBC UK Plc",
       swiftRef: "HSBC-LON-772910",
       commitmentType: "Irrevocable Reimbursement Undertaking",
-      commitmentDate: "2024-03-14",
+      commitmentDate: "2026-03-14",
       status: "Approved"
     },
     logistics: {
@@ -54,7 +54,7 @@ export const MOCK_INVOICES: Invoice[] = [
       vesselName: "Maersk Seletar",
       status: "Departed Nhava Sheva",
       routeRisk: "Low",
-      estimatedArrival: "2024-06-10",
+      estimatedArrival: "2026-06-10",
       coordinates: { lat: 18.94, lng: 72.95 }
     },
     financingProposal: {
@@ -66,12 +66,12 @@ export const MOCK_INVOICES: Invoice[] = [
     }
   },
   {
-    id: 'INV-2024-004',
+    id: 'INV-2026-004',
     exporter: 'Hyderabad Pharma',
     importer: 'NHS Supply Chain',
     amountGBP: 2200000,
     amountINR: 231000000,
-    dueDate: '2024-06-10',
+    dueDate: '2026-06-10',
     status: 'Active',
     integrity: { gstnVerified: true, logisticsVerified: true, dpcVerified: true },
     industry: 'Pharmaceuticals',
@@ -109,14 +109,14 @@ export const MOCK_INVOICES: Invoice[] = [
       bankName: "Bank of England (Settlement)",
       swiftRef: "BOE-GOV-PAY-99",
       commitmentType: "Sovereign Payment Undertaking",
-      commitmentDate: "2024-03-01",
+      commitmentDate: "2026-03-01",
       status: "Approved"
     },
     smartContractData: {
       contractAddress: "0x7a2...99b1",
       status: "ACTIVE_TRANSIT",
-      creationDate: "2024-05-10",
-      lastUpdate: "2024-05-23 14:00:00",
+      creationDate: "2026-05-10",
+      lastUpdate: "2026-05-23 14:00:00",
       financials: {
         loanAmountINR: 231000000,
         interestRateToExporter: 7.50,
@@ -130,11 +130,11 @@ export const MOCK_INVOICES: Invoice[] = [
       },
       interBankSwapDetails: {
         isdaVersion: 'ISDA 2002 Master',
-        masterAgreementId: 'MA-AXIS-BOE-2019',
+        masterAgreementId: 'MA-AXIS-BOE-2025',
         counterpartyBank: 'Barclays London (Clearing)',
         counterpartyCountry: 'United Kingdom',
         maturityBucket: 'Monthly',
-        maturityDate: '2024-06-15',
+        maturityDate: '2026-06-15',
         settlementCycle: 'T+2'
       }
     },
@@ -144,7 +144,7 @@ export const MOCK_INVOICES: Invoice[] = [
       vesselName: "Air Cargo Flight 991",
       status: "In Transit (Air)",
       routeRisk: "Low",
-      estimatedArrival: "2024-06-08",
+      estimatedArrival: "2026-06-08",
       coordinates: { lat: 51.47, lng: -0.45 }
     },
     financingProposal: {
@@ -157,12 +157,12 @@ export const MOCK_INVOICES: Invoice[] = [
   },
   // NEW ACTIVE SMART CONTRACTS
   {
-    id: 'INV-2024-008',
+    id: 'INV-2026-008',
     exporter: 'Surat Diamond Works',
     importer: 'Antwerp Gems BV',
     amountGBP: 850000,
     amountINR: 89250000,
-    dueDate: '2024-07-01',
+    dueDate: '2026-07-01',
     status: 'Active',
     integrity: { gstnVerified: true, logisticsVerified: true, dpcVerified: true },
     industry: 'Gems & Jewellery',
@@ -171,30 +171,30 @@ export const MOCK_INVOICES: Invoice[] = [
     smartContractData: {
       contractAddress: "0x8b1...22c3",
       status: "CUSTOMS_HOLD",
-      creationDate: "2024-05-15",
-      lastUpdate: "2024-05-24 09:30:00",
+      creationDate: "2026-05-15",
+      lastUpdate: "2026-05-24 09:30:00",
       financials: { loanAmountINR: 89250000, interestRateToExporter: 8.1, ukBankGuaranteeFee: 1.8, indianBankNetMargin: 6.3 },
       liveMetrics: { swapMTM: -45000, riskScoreCurrent: 88, logisticsStatus: "Held at Antwerp Port" },
       interBankSwapDetails: {
         isdaVersion: 'ISDA 2002 Master',
-        masterAgreementId: 'MA-AXIS-KBC-2021',
+        masterAgreementId: 'MA-AXIS-KBC-2025',
         counterpartyBank: 'KBC Bank NV',
         counterpartyCountry: 'Belgium (EU)',
         maturityBucket: 'Quarterly',
-        maturityDate: '2024-09-30',
+        maturityDate: '2026-09-30',
         settlementCycle: 'T+2'
       }
     },
-    logistics: { provider: "Brinks", trackingId: "BRK-9912", vesselName: "Secure Air 1", status: "Customs Hold", routeRisk: "Low", estimatedArrival: "2024-05-25", coordinates: { lat: 51.21, lng: 4.40 } },
+    logistics: { provider: "Brinks", trackingId: "BRK-9912", vesselName: "Secure Air 1", status: "Customs Hold", routeRisk: "Low", estimatedArrival: "2026-05-25", coordinates: { lat: 51.21, lng: 4.40 } },
     financingProposal: {interestRate: 8.1, processingFee: 25000, tenureDays: 45, projectedInterestIncome: 890000, swapStrategy: { spotRef: 105.40, forwardPoints: 0.50, effectiveHedgeRate: 105.90 }}
   },
   {
-    id: 'INV-2024-012',
+    id: 'INV-2026-012',
     exporter: 'Chennai Auto Components',
     importer: 'Detroit Motors UK',
     amountGBP: 1500000,
     amountINR: 157500000,
-    dueDate: '2024-08-15',
+    dueDate: '2026-08-15',
     status: 'Active',
     integrity: { gstnVerified: true, logisticsVerified: true, dpcVerified: true },
     industry: 'Automotive',
@@ -203,30 +203,30 @@ export const MOCK_INVOICES: Invoice[] = [
     smartContractData: {
       contractAddress: "0x9c4...11d9",
       status: "ACTIVE_TRANSIT",
-      creationDate: "2024-05-18",
-      lastUpdate: "2024-05-24 10:15:00",
+      creationDate: "2026-05-18",
+      lastUpdate: "2026-05-24 10:15:00",
       financials: { loanAmountINR: 157500000, interestRateToExporter: 7.8, ukBankGuaranteeFee: 1.6, indianBankNetMargin: 6.2 },
       liveMetrics: { swapMTM: 85000, riskScoreCurrent: 94, logisticsStatus: "Vessel in Red Sea" },
       interBankSwapDetails: {
         isdaVersion: 'ISDA 2002 Master',
-        masterAgreementId: 'MA-AXIS-LLOYDS-2020',
+        masterAgreementId: 'MA-AXIS-LLOYDS-2024',
         counterpartyBank: 'Lloyds Bank',
         counterpartyCountry: 'United Kingdom',
         maturityBucket: 'Quarterly',
-        maturityDate: '2024-09-30',
+        maturityDate: '2026-09-30',
         settlementCycle: 'T+2'
       }
     },
-    logistics: { provider: "MSC", trackingId: "MSC-7721", vesselName: "MSC Oscar", status: "In Transit", routeRisk: "High", estimatedArrival: "2024-06-20", coordinates: { lat: 15.5, lng: 41.5 } },
+    logistics: { provider: "MSC", trackingId: "MSC-7721", vesselName: "MSC Oscar", status: "In Transit", routeRisk: "High", estimatedArrival: "2026-06-20", coordinates: { lat: 15.5, lng: 41.5 } },
     financingProposal: {interestRate: 7.8, processingFee: 45000, tenureDays: 90, projectedInterestIncome: 3050000, swapStrategy: { spotRef: 105.50, forwardPoints: 0.90, effectiveHedgeRate: 106.40 }}
   },
   {
-    id: 'INV-2024-015',
+    id: 'INV-2026-015',
     exporter: 'Punjab Agro Foods',
     importer: 'US Whole Foods',
     amountGBP: 350000,
     amountINR: 36750000,
-    dueDate: '2024-06-30',
+    dueDate: '2026-06-30',
     status: 'Active',
     integrity: { gstnVerified: true, logisticsVerified: true, dpcVerified: true },
     industry: 'Agriculture',
@@ -235,30 +235,30 @@ export const MOCK_INVOICES: Invoice[] = [
     smartContractData: {
       contractAddress: "0x3f2...88a1",
       status: "PAYMENT_PENDING",
-      creationDate: "2024-04-20",
-      lastUpdate: "2024-05-24 08:00:00",
+      creationDate: "2026-04-20",
+      lastUpdate: "2026-05-24 08:00:00",
       financials: { loanAmountINR: 36750000, interestRateToExporter: 8.5, ukBankGuaranteeFee: 2.1, indianBankNetMargin: 6.4 },
       liveMetrics: { swapMTM: 12000, riskScoreCurrent: 90, logisticsStatus: "Delivered to Warehouse" },
       interBankSwapDetails: {
         isdaVersion: 'ISDA 1992 Master',
-        masterAgreementId: 'MA-AXIS-JPM-2018',
+        masterAgreementId: 'MA-AXIS-JPM-2024',
         counterpartyBank: 'JP Morgan Chase (Lon)',
         counterpartyCountry: 'United States',
         maturityBucket: 'Monthly',
-        maturityDate: '2024-06-30',
+        maturityDate: '2026-06-30',
         settlementCycle: 'T+1'
       }
     },
-    logistics: { provider: "Hapag-Lloyd", trackingId: "HL-3321", vesselName: "Al Jmeliyah", status: "Delivered", routeRisk: "Low", estimatedArrival: "2024-05-20", coordinates: { lat: 40.71, lng: -74.00 } },
+    logistics: { provider: "Hapag-Lloyd", trackingId: "HL-3321", vesselName: "Al Jmeliyah", status: "Delivered", routeRisk: "Low", estimatedArrival: "2026-05-20", coordinates: { lat: 40.71, lng: -74.00 } },
     financingProposal: {interestRate: 8.5, processingFee: 12000, tenureDays: 60, projectedInterestIncome: 520000, swapStrategy: { spotRef: 105.35, forwardPoints: 0.45, effectiveHedgeRate: 105.80 }}
   },
   {
-    id: 'INV-2024-022',
+    id: 'INV-2026-022',
     exporter: 'Kerala Spices',
     importer: 'German BioMarkt',
     amountGBP: 120000,
     amountINR: 12600000,
-    dueDate: '2024-07-15',
+    dueDate: '2026-07-15',
     status: 'Active',
     integrity: { gstnVerified: true, logisticsVerified: true, dpcVerified: true },
     industry: 'Agriculture',
@@ -267,21 +267,21 @@ export const MOCK_INVOICES: Invoice[] = [
     smartContractData: {
       contractAddress: "0x1d4...55e9",
       status: "ACTIVE_TRANSIT",
-      creationDate: "2024-05-20",
-      lastUpdate: "2024-05-24 11:00:00",
+      creationDate: "2026-05-20",
+      lastUpdate: "2026-05-24 11:00:00",
       financials: { loanAmountINR: 12600000, interestRateToExporter: 8.8, ukBankGuaranteeFee: 2.2, indianBankNetMargin: 6.6 },
       liveMetrics: { swapMTM: -1500, riskScoreCurrent: 85, logisticsStatus: "Departed Kochi" },
       interBankSwapDetails: {
         isdaVersion: 'ISDA 2002 Master',
-        masterAgreementId: 'MA-AXIS-DEUTSCHE-2022',
+        masterAgreementId: 'MA-AXIS-DEUTSCHE-2025',
         counterpartyBank: 'Deutsche Bank AG',
         counterpartyCountry: 'Germany (EU)',
         maturityBucket: 'Monthly',
-        maturityDate: '2024-07-31',
+        maturityDate: '2026-07-31',
         settlementCycle: 'T+2'
       }
     },
-    logistics: { provider: "CMA CGM", trackingId: "CMA-9910", vesselName: "CMA CGM Marco Polo", status: "In Transit", routeRisk: "Medium", estimatedArrival: "2024-06-15", coordinates: { lat: 9.93, lng: 76.26 } },
+    logistics: { provider: "CMA CGM", trackingId: "CMA-9910", vesselName: "CMA CGM Marco Polo", status: "In Transit", routeRisk: "Medium", estimatedArrival: "2026-06-15", coordinates: { lat: 9.93, lng: 76.26 } },
     financingProposal: {interestRate: 8.8, processingFee: 5000, tenureDays: 55, projectedInterestIncome: 168000, swapStrategy: { spotRef: 105.45, forwardPoints: 0.55, effectiveHedgeRate: 106.00 }}
   }
 ];
@@ -426,7 +426,7 @@ export const SWAP_CONFIG = {
 };
 
 export const MOCK_NETTING_BATCH = {
-  id: "NET-2024-05-23-B1",
+  id: "NET-2026-05-23-B1",
   totalInvoices: 124,
   netAmountGBP: 14200000,
   merkleRoot: "0x7f8a9...b2c1",
@@ -440,7 +440,7 @@ export const MOCK_UK_IMPORTERS = [
     availableHeadroom: 550000,
     totalCreditLine: 1000000,
     sanctionsStatus: "Clean",
-    ofsiCheckDate: "2024-05-23",
+    ofsiCheckDate: "2026-05-23",
   },
   {
     id: "IMP-UK-002",
@@ -448,7 +448,7 @@ export const MOCK_UK_IMPORTERS = [
     availableHeadroom: 47800000,
     totalCreditLine: 50000000,
     sanctionsStatus: "Clean",
-    ofsiCheckDate: "2024-05-23",
+    ofsiCheckDate: "2026-05-23",
   },
   {
     id: "IMP-UK-003",
@@ -456,27 +456,27 @@ export const MOCK_UK_IMPORTERS = [
     availableHeadroom: 175000,
     totalCreditLine: 300000,
     sanctionsStatus: "Clean",
-    ofsiCheckDate: "2024-05-22",
+    ofsiCheckDate: "2026-05-22",
   },
 ];
 
 export const MOCK_DPCS = [
   {
-    commitmentId: "DPC-2024-001",
+    commitmentId: "DPC-2026-001",
     status: "Signed",
     amount: 450000,
     exporterName: "Tata Textiles Ltd",
     legalSignature: "0xSignedByHSBC...99a",
   },
   {
-    commitmentId: "DPC-2024-002",
+    commitmentId: "DPC-2026-002",
     status: "Draft",
     amount: 125000,
     exporterName: "Bengal Spices Corp",
     legalSignature: "",
   },
   {
-    commitmentId: "DPC-2024-004",
+    commitmentId: "DPC-2026-004",
     status: "Signed",
     amount: 2200000,
     exporterName: "Hyderabad Pharma",
@@ -492,7 +492,7 @@ export const MOCK_SHIPMENTS = [
     destination: "Southampton",
     gpsStatus: "On Course",
     coordinates: { lat: 36.1, lng: -5.35 }, // Near Gibraltar
-    hmrcRef: "GB-CDS-992100",
+    hmrcRef: "GB-CDS-262100",
     customsStatus: "Pre-Lodged (Cleared)",
   },
   {
@@ -508,7 +508,7 @@ export const MOCK_SHIPMENTS = [
 ];
 
 export const MOCK_GLOBAL_SETTLEMENT = {
-  batchId: "SET-GLOBAL-2024-05-23",
+  batchId: "SET-GLOBAL-2026-05-23",
   counterparties: [
     {
       bankName: "Barclays London",
@@ -563,16 +563,29 @@ export const MOCK_RISK_METRICS: SwapRiskMetrics = {
   theta: -1200, // Time decay cost per day in INR
   vega: 0.15,
   rho: 0.08,
+  volga: 0.04, // Sensitivity of Vega to volatility
   var99: 4500000, // INR 45 Lakhs VaR
   stressTestResult: 'Pass'
 };
+
+export const SENSITIVITY_ANALYSIS_DATA = [
+  { spot: 103.0, delta: 0.32, gamma: 0.012 },
+  { spot: 103.5, delta: 0.36, gamma: 0.015 },
+  { spot: 104.0, delta: 0.41, gamma: 0.018 },
+  { spot: 104.5, delta: 0.46, gamma: 0.021 },
+  { spot: 105.0, delta: 0.50, gamma: 0.024 }, // ATM
+  { spot: 105.5, delta: 0.54, gamma: 0.023 },
+  { spot: 106.0, delta: 0.59, gamma: 0.020 },
+  { spot: 106.5, delta: 0.63, gamma: 0.017 },
+  { spot: 107.0, delta: 0.67, gamma: 0.014 },
+];
 
 export const MOCK_REGULATORY_LOGS: RegulatoryLog[] = [
   {
     id: 'REG-991',
     authority: 'RBI (India)',
     type: 'FEMA Declaration',
-    referenceId: 'EDPMS-2024-8821',
+    referenceId: 'EDPMS-2026-8821',
     status: 'Acknowledged',
     timestamp: '10:05 AM',
     details: 'Purpose Code P0103 (Advance Payment) Linked to IRN'
@@ -590,7 +603,7 @@ export const MOCK_REGULATORY_LOGS: RegulatoryLog[] = [
     id: 'REG-993',
     authority: 'RBI (India)',
     type: 'Purpose Code P0103',
-    referenceId: 'INV-2024-004',
+    referenceId: 'INV-2026-004',
     status: 'Pending',
     timestamp: '11:30 AM',
     details: 'Settlement Batch waiting final pacs.008 trigger'
